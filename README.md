@@ -42,7 +42,7 @@
 
 ###### 3. Pull to Refresh
 
-- [ ] Adicionar uma funcionalidade para quando o usuário arrastar a listagem de repositórios favoritados pra baixo atualize a lista resetando o estado, ou seja, volte o estado da paginação para a página 1 exibindo apenas os 30 primeiros itens.
+- [x] Adicionar uma funcionalidade para quando o usuário arrastar a listagem de repositórios favoritados pra baixo atualize a lista resetando o estado, ou seja, volte o estado da paginação para a página 1 exibindo apenas os 30 primeiros itens.
 
 A funcionalidade `Pull to Refresh` existe por padrão na **FlatList**.
 
