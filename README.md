@@ -54,6 +54,20 @@ A funcionalidade `Pull to Refresh` existe por padrão na **FlatList**.
 
 Documentação de utilização da [WebView](https://github.com/react-native-community/react-native-webview/blob/master/docs/Getting-Started.md).
 
+## :computer: Resultado do desafio
+
+### Adicionar e listar usuários do Github
+
+![Desafio 06 - Usuários](.github/result-users.jpeg)
+
+### Lista de repositórios favoritos do usuário
+
+![Desafio 06 - Lista de Favoritos](.github/result-favorites.jpeg)
+
+### Visualizando repositório por WebView
+
+![Desafio 06 - Webview](.github/result-webview.jpeg)
+
 ## :memo: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
