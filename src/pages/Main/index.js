@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Keyboard, ActivityIndicator } from 'react-native';
+import { Keyboard, ActivityIndicator, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '../../services/api';
@@ -17,6 +17,7 @@ import {
   Bio,
   ProfileButton,
   ProfileButtonText,
+  UnfollowButton,
 } from './styles';
 
 export default class Main extends Component {
@@ -57,22 +58,44 @@ export default class Main extends Component {
 
     this.setState({ loading: true });
 
-    const response = await api.get(`/users/${newUser}`);
+    try {
+      const response = await api.get(`/users/${newUser}`);
 
-    const data = {
-      name: response.data.name,
-      login: response.data.login,
-      bio: response.data.bio,
-      avatar: response.data.avatar_url,
-    };
+      const data = {
+        name: response.data.name,
+        login: response.data.login,
+        bio: response.data.bio,
+        avatar: response.data.avatar_url,
+      };
 
-    this.setState({
-      users: [...users, data],
-      newUser: '',
-      loading: false,
+      const userExists = users.find(u => u.login === data.login);
+
+      if (userExists) throw Error('User is already registered');
+
+      this.setState({
+        users: [...users, data],
+        newUser: '',
+        loading: false,
+      });
+
+      Keyboard.dismiss();
+    } catch (err) {
+      Alert.alert(err.message);
+    } finally {
+      this.setState({ loading: false });
+    }
+  };
+
+  handleRemoveUser = async user => {
+    const { users } = this.state;
+
+    const filtered = users.filter(value => {
+      return value !== user;
     });
 
-    Keyboard.dismiss();
+    this.setState({
+      users: filtered,
+    });
   };
 
   handleNavigate = user => {
@@ -97,7 +120,7 @@ export default class Main extends Component {
             onSubmitEditing={this.handleAddUser}
           />
 
-          <SubmitButton loading={loading} onPress={this.handleAddUser}>
+          <SubmitButton onPress={this.handleAddUser}>
             {loading ? (
               <ActivityIndicator color="#FFF" />
             ) : (
@@ -111,6 +134,10 @@ export default class Main extends Component {
           keyExtractor={user => user.login}
           renderItem={({ item }) => (
             <User>
+              <UnfollowButton onPress={() => this.handleRemoveUser(item)}>
+                <Icon name="remove" size={20} color="#FFF" />
+              </UnfollowButton>
+
               <Avatar source={{ uri: item.avatar }} />
               <Name>{item.name}</Name>
               <Bio>{item.bio}</Bio>
