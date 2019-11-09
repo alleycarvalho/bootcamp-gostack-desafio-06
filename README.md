@@ -32,7 +32,7 @@
 
 ###### 1. Loading de repositórios
 
-- [ ] Adicionar um indicator de `loading`, utilizando `<ActivityIndicator />` antes de carregar a lista de repositórios favoritados na tela de `detalhes do Usuário`.
+- [x] Adicionar um indicator de `loading`, utilizando `<ActivityIndicator />` antes de carregar a lista de repositórios favoritados na tela de `detalhes do Usuário`.
 
 ###### 2. Scroll infinito
 
@@ -53,6 +53,10 @@ A funcionalidade `Pull to Refresh` existe por padrão na **FlatList**.
 - [ ] O conteúdo da página será uma **WebView**, ou seja, um browser integrado que exibe o atributo `html_url` presente no objeto do repositório que vem da API do Github.
 
 Documentação de utilização da [WebView](https://github.com/react-native-community/react-native-webview/blob/master/docs/Getting-Started.md).
+
+## :computer: Resultado do desafio
+
+![Desafio 06](.github/resultado.png)
 
 ## :memo: Licença
 
