@@ -36,9 +36,9 @@
 
 ###### 2. Scroll infinito
 
-- [ ] Adicionar uma funcionalidade de `scroll infinito` na lista de repositórios favoritados. Assim que o usuário chegar nos **20% do final de lista**, busque pelos items na próxima página e adicione na lista.
+- [x] Adicionar uma funcionalidade de `scroll infinito` na lista de repositórios favoritados. Assim que o usuário chegar nos **20% do final de lista**, busque pelos items na próxima página e adicione na lista.
 
-- [ ] Para requisitar uma nova página no Github utilize um parâmetro `page` no fim da URL.
+- [x] Para requisitar uma nova página no Github utilize um parâmetro `page` no fim da URL.
 
 ###### 3. Pull to Refresh
 

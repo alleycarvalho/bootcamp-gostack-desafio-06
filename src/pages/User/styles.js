@@ -85,3 +85,13 @@ export const Loading = styled.ActivityIndicator.attrs({
   align-items: center;
   margin-top: 20px;
 `;
+
+export const LoadingMore = styled.ActivityIndicator.attrs({
+  color: '#7159c1',
+  size: 25,
+})`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+`;
