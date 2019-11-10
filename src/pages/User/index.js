@@ -34,6 +34,7 @@ export default class User extends Component {
   state = {
     stars: [],
     page: 1,
+    lastPage: 0,
     loading: true,
     loadingMore: false,
     refreshing: false,
@@ -44,13 +45,26 @@ export default class User extends Component {
   }
 
   load = async (page = 1) => {
-    const { stars } = this.state;
+    const { stars, lastPage } = this.state;
     const { navigation } = this.props;
     const user = navigation.getParam('user');
 
     const response = await api.get(`/users/${user.login}/starred`, {
       params: { page },
     });
+
+    if (lastPage === 0) {
+      if (response.headers.link) {
+        const { link } = response.headers;
+        const str = link.split(',')[1];
+        const iniPos = str.indexOf('page=') + 5;
+        const endPos = str.indexOf('>');
+
+        this.setState({ lastPage: str.slice(iniPos, endPos) });
+      } else {
+        this.setState({ lastPage: 1 });
+      }
+    }
 
     this.setState({
       stars: page >= 2 ? [...stars, ...response.data] : response.data,
@@ -62,11 +76,9 @@ export default class User extends Component {
   };
 
   loadMore = () => {
-    this.setState({
-      loadingMore: true,
-    });
+    const { page, lastPage } = this.state;
 
-    const { page } = this.state;
+    if (lastPage > 0 && page <= lastPage) this.setState({ loadingMore: true });
 
     const nextPage = page + 1;
 
